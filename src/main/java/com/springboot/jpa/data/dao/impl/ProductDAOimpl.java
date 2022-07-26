@@ -4,65 +4,63 @@ import com.springboot.jpa.data.dao.ProductDAO;
 import com.springboot.jpa.data.entity.Product;
 import com.springboot.jpa.data.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class ProductDAOimpl implements ProductDAO {
+
     private final ProductRepository productRepository;
 
+//    i,s.u,d
 
-//    @Autowired
-//    public  ProductDAOimpl(ProductRepository productRepository){
-//        this.productRepository = productRepository;
-//    }
+   @Override
+    public Product insertProduct(Product product){
+       Product saveProduct = productRepository.save(product);
+       return saveProduct;
+   }
 
-    @Override
-    public Product inserProduct(Product product){
-        Product savedProduct = productRepository.save(product);
-        return savedProduct;
-    }
-
-    @Override
+   @Override
     public Product selectProduct(Long number){
-        Product selectedProduct = productRepository.getReferenceById(number);
-        return selectedProduct;
-    } //
+       Product selectProduct = productRepository.getReferenceById(number);
+       return selectProduct;
+   }
 
-    @Override
-    public Product updateProductName(Long number, String name) throws Exception{
+   @Override
+   public Product updateProductName(Long number, String name) throws Exception{
 
-      Optional<Product> selectProduct = productRepository.findById(number);
+        Optional<Product> selectProduct = productRepository.findById(number);
 
-      Product updateProduct;
-      if(selectProduct.isPresent()){
-          Product product = selectProduct.get();
+        Product updateProduct;
+        if(selectProduct.isPresent()){
 
-          product.setName(name);
-          product.setUpdateAt(LocalDateTime.now());
+            Product product = selectProduct.get();
 
-          updateProduct = productRepository.save(product);
-      }else{
-          throw new Exception();
-      }
-      return updateProduct;
-    }
+            product.setName(name);
+            product.setUpdateAt(LocalDateTime.now());
 
-    @Override
-    public  void deleteProduct(Long number) throws Exception {
 
-        Optional<Product> selectedProduct = productRepository.findById(number);
-
-        if(selectedProduct.isPresent()){
-            Product product = selectedProduct.get();
-
-            productRepository.delete(product);
+            updateProduct = productRepository.save(product);
         }else{
             throw new Exception();
         }
+
+      return updateProduct;
+   }
+
+    public void deleteProduct(Long number) throws Exception{
+
+       Optional<Product> deleteProduct  = productRepository.findById(number);
+
+       if(deleteProduct.isPresent()){
+           Product product = deleteProduct.get();
+           productRepository.delete(product);
+       }else{
+           throw  new Exception();
+      }
 
 
     }

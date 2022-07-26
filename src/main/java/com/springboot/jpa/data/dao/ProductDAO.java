@@ -3,7 +3,7 @@ package com.springboot.jpa.data.dao;
 import com.springboot.jpa.data.entity.Product;
 
 public interface ProductDAO {
-    Product inserProduct(Product product); // 엔티티의 정보 그대로 데이터베이스에 넣을것
+    Product insertProduct(Product product); // 엔티티의 정보 그대로 데이터베이스에 넣을것
 
     Product selectProduct(Long number); //
 
