@@ -3,6 +3,7 @@ package com.springboot.jpa.data.dao.impl;
 import com.springboot.jpa.data.dao.ProductDAO;
 import com.springboot.jpa.data.entity.Product;
 import com.springboot.jpa.data.repository.ProductRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ProductDAOimpl implements ProductDAO {
 
     private final ProductRepository productRepository;
