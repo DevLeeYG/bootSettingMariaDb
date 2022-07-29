@@ -3,8 +3,6 @@ package com.springboot.jpa.data.dto;
 import lombok.*;
 
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class ProductDto {
 
@@ -12,7 +10,11 @@ public class ProductDto {
     private int price;
     private int stock;
 
-
+    public ProductDto(String  name, int price, int stock){
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+    }
 
 
 }
