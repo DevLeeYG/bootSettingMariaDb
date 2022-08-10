@@ -12,10 +12,8 @@ import lombok.*;
 
 // 예제 6.6, 예제 6.30, 6.31, 6.32, 6.33, 6.34, 6.35, 6.36, 6.37
 @Entity
-
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Data
 @Table(name = "product")
 public class Product {
