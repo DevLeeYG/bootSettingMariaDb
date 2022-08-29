@@ -1,20 +1,20 @@
 package com.springboot.jpa.data.entity;
 
-import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.*;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Table(name = "product")
 public class Product {
 
@@ -36,8 +36,17 @@ public class Product {
     private LocalDateTime updatedAt;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Product product = (Product) o;
+        return number != null && Objects.equals(number, product.number);
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
 
